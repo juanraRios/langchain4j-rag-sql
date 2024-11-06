@@ -18,16 +18,11 @@ public class FilmsAIConfig {
 
     @Bean
     public FilmsAgent FilmsAgent(ChatLanguageModel openAiChatModel,
-                                 DataSource dataSource) {
-
-        ContentRetriever contentRetriever = SqlDatabaseContentRetriever.builder()
-                .dataSource(dataSource)
-                .chatLanguageModel(openAiChatModel)
-                .build();
+                                 ContentRetriever databaseContentRetriever) {
 
         return AiServices.builder(FilmsAgent.class)
                 .chatLanguageModel(openAiChatModel)
-                .contentRetriever(contentRetriever)
+                .contentRetriever(databaseContentRetriever)
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
                 .build();
     }
