@@ -11,3 +11,10 @@ dataSource:
   user: 'sa'
   password: 'sa'
   script: 'sql/IMDBdatasetimport.sql'
+
+logging:
+  level:
+    net:
+      ttddyy:
+        dsproxy:
+          listener: debug
