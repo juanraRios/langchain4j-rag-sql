@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 public class FilmsAIConfig {
 
     @Bean
-    public FilmsAgent FilmsAgent(ChatLanguageModel openAiChatModel,
+    public FilmsAgent filmsAgent(ChatLanguageModel openAiChatModel,
                                  ContentRetriever databaseContentRetriever) {
 
         return AiServices.builder(FilmsAgent.class)

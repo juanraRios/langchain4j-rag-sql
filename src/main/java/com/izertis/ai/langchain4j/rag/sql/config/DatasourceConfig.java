@@ -19,6 +19,15 @@ import java.sql.Statement;
 @Configuration
 public class DatasourceConfig {
 
+    /**
+     * Configures and returns datasource for database
+     *
+     * @param url      the database url
+     * @param user     the database user
+     * @param password the database password
+     * @param script   the path for database creation script
+     * @return the dataSource configured.
+     */
     @Bean
     DataSource dataSource(@Value("${dataSource.url}") final String url,
                           @Value("${dataSource.user}") final String user,
@@ -36,6 +45,12 @@ public class DatasourceConfig {
         return dataSource;
     }
 
+    /**
+     * Reads data of SQL script file from the path provided.
+     *
+     * @param path the relative path of SQL file.
+     * @return the file content like string.
+     */
     private String read(String path) {
         try {
             return new String(Files.readAllBytes(toPath(path)));
@@ -44,7 +59,13 @@ public class DatasourceConfig {
         }
     }
 
-    public Path toPath(String relativePath) {
+    /**
+     * Convert relative path to Path object.
+     *
+     * @param relativePath the relative path of resource.
+     * @return the path object.
+     */
+    private Path toPath(String relativePath) {
         try {
             URL fileUrl = DatasourceConfig.class.getClassLoader().getResource(relativePath);
             return Paths.get(fileUrl.toURI());
@@ -53,6 +74,12 @@ public class DatasourceConfig {
         }
     }
 
+    /**
+     * Execute several SQL sentences separated by semicolons.
+     *
+     * @param sql        the SQL sentences to execute.
+     * @param dataSource the datasource.
+     */
     private void execute(String sql, DataSource dataSource) {
         try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
             for (String sqlStatement : sql.split(";")) {

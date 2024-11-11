@@ -2,12 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.izertis.ai</groupId>
     <artifactId>langchain4j-rag-sql</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -31,6 +33,14 @@
             <version>2.2.224</version>
         </dependency>
 
+        <!-- database proxy interceptor -->
+
+        <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>datasource-proxy-spring-boot-starter</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+
         <!-- ai -->
 
         <dependency>
@@ -49,14 +59,6 @@
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-experimental-sql</artifactId>
             <version>0.35.0</version>
-        </dependency>
-
-        <!-- database interceptor -->
-
-        <dependency>
-            <groupId>com.github.gavlyukovskiy</groupId>
-            <artifactId>datasource-proxy-spring-boot-starter</artifactId>
-            <version>1.9.1</version>
         </dependency>
 
         <!-- test -->
